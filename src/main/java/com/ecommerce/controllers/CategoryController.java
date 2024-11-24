@@ -1,5 +1,6 @@
 package com.ecommerce.controllers;
 
+import com.ecommerce.config.AppConstants;
 import com.ecommerce.dtos.request.CategoryRequest;
 import com.ecommerce.dtos.response.CategoryResponse;
 import com.ecommerce.models.Category;
@@ -23,10 +24,12 @@ public class CategoryController {
 
     @GetMapping("/public/categories")
     public ResponseEntity<CategoryResponse> getCategories(
-            @RequestParam(name = "pageNumber") int pageNumber,
-            @RequestParam(name = "pageSize") int pageSize
+            @RequestParam(name = "pageNumber", defaultValue = AppConstants.PAGE_NUMBER, required = false) int pageNumber,
+            @RequestParam(name = "pageSize", defaultValue = AppConstants.PAGE_SIZE, required = false) int pageSize,
+            @RequestParam(name = "sortBy", defaultValue = AppConstants.SORT_CATEGORIES_BY, required = false) String sortBy,
+            @RequestParam(name = "sortDirection", defaultValue = AppConstants.SORT_DIRECTION, required = false) String sortDirection
     ) {
-        return ResponseEntity.ok(categoryService.getCategories(pageNumber, pageSize));
+        return ResponseEntity.ok(categoryService.getCategories(pageNumber, pageSize, sortBy, sortDirection));
     }
 
     @PostMapping("/admin/category")

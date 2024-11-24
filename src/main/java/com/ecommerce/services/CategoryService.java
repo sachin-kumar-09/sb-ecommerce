@@ -7,7 +7,7 @@ import com.ecommerce.models.Category;
 import java.util.List;
 
 public interface CategoryService {
-    public CategoryResponse getCategories(int pageNumer, int pageSize);
+    public CategoryResponse getCategories(int pageNumer, int pageSize, String sortBy, String sortDirection);
     public CategoryRequest createCategory(CategoryRequest categoryRequest);
     public CategoryRequest updateCategory(CategoryRequest categoryRequest, Long categoryId);
     public CategoryRequest deleteCategory(Long categoryId);
